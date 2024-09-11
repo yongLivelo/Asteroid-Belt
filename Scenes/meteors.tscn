@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6kbwt75uesx6"]
+
+[ext_resource type="Script" path="res://Scripts/meteors.gd" id="1_m2g54"]
+
+[node name="Meteors" type="Node2D"]
+position = Vector2(-18, -10)
+script = ExtResource("1_m2g54")
+
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://6wma8hq6e17j"]
+
+[ext_resource type="Script" path="res://Scripts/audio_manager.gd" id="1_8lhfl"]
+[ext_resource type="AudioStream" uid="uid://bhadiv2bxmgpe" path="res://Assets/Audio/laser_beam.wav" id="2_1rh4e"]
+[ext_resource type="AudioStream" uid="uid://cxlg26oe2ue7c" path="res://Assets/Audio/background_normal.mp3" id="2_feray"]
+[ext_resource type="AudioStream" uid="uid://dd8h540e60orb" path="res://Assets/Audio/laser_bullet.wav" id="3_ojtqe"]
+[ext_resource type="AudioStream" uid="uid://bg66hj8fsov7x" path="res://Assets/Audio/meteor_destroy.mp3" id="4_g4jdr"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_8lhfl")
+
+[node name="LaserBeam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1rh4e")
+
+[node name="BackgroundNormal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_feray")
+
+[node name="MeteorDestroy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_g4jdr")
+
+[node name="LaserBullet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ojtqe")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt4m8t0174xfi"]
+
+[ext_resource type="Script" path="res://Scripts/laser_beam.gd" id="1_uvpsm"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4b4hb"]
+a = Vector2(-8, 0)
+b = Vector2(208.761, 3.8147e-06)
+
+[node name="LaserBeam" type="Marker2D"]
+modulate = Color(0, 2, 2, 1)
+script = ExtResource("1_uvpsm")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(204, 0)
+collision_mask = 0
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 212.486, 0)
+
+[node name="DamageArea" type="Area2D" parent="Line2D" groups=["laser", "laser_beam"]]
+scale = Vector2(0.982747, 1.08484)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/DamageArea"]
+position = Vector2(7.45573, -3.8147e-06)
+shape = SubResource("SegmentShape2D_4b4hb")
+
+[node name="HoldTime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="HoldTime" to="." method="_on_hold_time_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

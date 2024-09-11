@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://q55v8wwk2co7"]
+
+[ext_resource type="Script" path="res://Scripts/space_background.gd" id="1_gs7cf"]
+
+[node name="SpaceBackground" type="ParallaxBackground"]
+script = ExtResource("1_gs7cf")
+
+[node name="BackgroundColor" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundColor"]
+offset_right = 2500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+clip_children = 1
+scale = Vector2(0.992446, 0.996773)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(0, 1500)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+clip_children = 1
+scale = Vector2(1.13923, 0.973042)
+motion_mirroring = Vector2(0, 1500)

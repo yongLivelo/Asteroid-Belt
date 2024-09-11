@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://e72tif1ulyg5"]
+
+[ext_resource type="PackedScene" uid="uid://q55v8wwk2co7" path="res://Scenes/space_background.tscn" id="2_vv2ml"]
+[ext_resource type="PackedScene" uid="uid://bvo6ha4ee5033" path="res://Scenes/player.tscn" id="2_yjilw"]
+[ext_resource type="PackedScene" uid="uid://c6kbwt75uesx6" path="res://Scenes/meteors.tscn" id="3_xail8"]
+[ext_resource type="PackedScene" uid="uid://obon0wjhhru5" path="res://Scenes/user_interface.tscn" id="4_f3s4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukg3i"]
+size = Vector2(1704.67, 14.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb3iq"]
+size = Vector2(20.6703, 1027.33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2her"]
+size = Vector2(16.6667, 1028)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3yrc"]
+size = Vector2(2965, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5x8m"]
+size = Vector2(33, 1602)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45p12"]
+size = Vector2(26, 1602)
+
+[sub_resource type="Environment" id="Environment_jjd01"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+
+[node name="Level" type="Node2D" groups=["level"]]
+metadata/_edit_horizontal_guides_ = [104.0]
+
+[node name="SpaceBackground" parent="." instance=ExtResource("2_vv2ml")]
+
+[node name="Borders" type="Node2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="Top" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Top"]
+position = Vector2(835.667, -7.00001)
+shape = SubResource("RectangleShape2D_ukg3i")
+
+[node name="Bottom" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom"]
+position = Vector2(835.667, 1006.83)
+shape = SubResource("RectangleShape2D_ukg3i")
+
+[node name="Right" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Right"]
+position = Vector2(1677.33, 500)
+shape = SubResource("RectangleShape2D_pb3iq")
+
+[node name="Left" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Left"]
+position = Vector2(-8.33333, 500)
+shape = SubResource("RectangleShape2D_u2her")
+
+[node name="ObjectClearer" type="Node2D" parent="."]
+position = Vector2(202, 131)
+
+[node name="Bottom" type="Area2D" parent="ObjectClearer" groups=["object_clearer"]]
+collision_layer = 32
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectClearer/Bottom"]
+position = Vector2(1082.5, 1536.5)
+shape = SubResource("RectangleShape2D_h3yrc")
+
+[node name="Right" type="Area2D" parent="ObjectClearer" groups=["object_clearer"]]
+collision_layer = 32
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectClearer/Right"]
+position = Vector2(2548, 751)
+shape = SubResource("RectangleShape2D_i5x8m")
+
+[node name="Left" type="Area2D" parent="ObjectClearer" groups=["object_clearer"]]
+collision_layer = 32
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectClearer/Left"]
+position = Vector2(-387, 752)
+shape = SubResource("RectangleShape2D_45p12")
+
+[node name="Meteors" parent="." instance=ExtResource("3_xail8")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jjd01")
+
+[node name="UserInterface" parent="." instance=ExtResource("4_f3s4v")]
+
+[node name="Player" parent="." instance=ExtResource("2_yjilw")]
+position = Vector2(1249, 751)

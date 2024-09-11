@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtw77x6qp7r8d"]
+
+[ext_resource type="Script" path="res://Scripts/laser_bullet.gd" id="1_7lvxw"]
+[ext_resource type="Texture2D" uid="uid://u2jldu1dryr6" path="res://Assets/Graphics/laser_bullet.png" id="2_kwobi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f6b5"]
+radius = 90.0
+height = 350.0
+
+[node name="LaserBullet" type="Area2D" groups=["laser", "laser_bullet"]]
+modulate = Color(1, 1.5, 1.5, 1)
+position = Vector2(0, -1)
+rotation = 3.14159
+collision_layer = 8
+collision_mask = 34
+script = ExtResource("1_7lvxw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, -1.99999)
+scale = Vector2(0.067599, 0.0963813)
+texture = ExtResource("2_kwobi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.00001, -3.99999)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_8f6b5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

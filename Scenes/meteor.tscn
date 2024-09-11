@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://duxqpxe2t6yn0"]
+
+[ext_resource type="Script" path="res://Scripts/meteor.gd" id="1_fssps"]
+[ext_resource type="Texture2D" uid="uid://cxl3mg4ermhni" path="res://Assets/Graphics/Meteor/meteor_1.png" id="2_0d3b2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q874n"]
+rough = true
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sq4j0"]
+radius = 72.3594
+
+[sub_resource type="Gradient" id="Gradient_x2pkh"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Meteor" type="RigidBody2D"]
+position = Vector2(0, -4)
+collision_layer = 64
+collision_mask = 65
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_q874n")
+gravity_scale = 0.0
+constant_force = Vector2(100, 0)
+constant_torque = 100.0
+script = ExtResource("1_fssps")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_0d3b2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_sq4j0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 57
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.13687e-13, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_sq4j0")
+
+[node name="Explode" type="CPUParticles2D" parent="."]
+scale = Vector2(-1.0542, -1.72414)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(10, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = 300.0
+angular_velocity_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_x2pkh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="Explode" to="." method="_on_explode_finished"]
