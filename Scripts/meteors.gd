@@ -9,7 +9,7 @@ func instansiate_meteor():
 	var meteor = meteor_scene.instantiate()
 	add_child(meteor)
 	meteor.player_collision.connect($"../Player".on_meteor_collision)
-	meteor.destroyed_large_meteor.connect(create_fractures)x
+	meteor.destroyed_large_meteor.connect(create_fractures)
 	return meteor
 	
 func create_fractures(pos: Vector2):
