@@ -101,6 +101,3 @@ environment = SubResource("Environment_jjd01")
 
 [node name="Player" parent="." instance=ExtResource("2_yjilw")]
 position = Vector2(1249, 751)
-speed = null
-acceleration = null
-friction_value = null
