@@ -1,6 +1,6 @@
 extends Node2D
 
-signal player_recoil(activating, activated)
+signal activation(activating: bool, activated: bool)
 @onready var collision: CollisionShape2D = $Line2D/DamageArea/CollisionShape2D
 const MAX_RANGE = 5000
 var base_width = 30
@@ -32,13 +32,13 @@ func _physics_process(_delta):
 		mouse_position = get_local_mouse_position()
 		$HoldTime.start()
 		laser_beam_activating = true
-		player_recoil.emit(laser_beam_activating, laser_beam_activated)
+		activation.emit(laser_beam_activating, laser_beam_activated)
 
 	if Input.is_action_just_released("beam") and not $Line2D.visible:
 		AudioManager.laser_beam.stop()
 		$HoldTime.stop()
 		laser_beam_activating = false
-		player_recoil.emit(laser_beam_activating, laser_beam_activated)
+		activation.emit(laser_beam_activating, laser_beam_activated)
 
 
 func _on_hold_time_timeout():
@@ -46,14 +46,14 @@ func _on_hold_time_timeout():
 	collision.disabled = false;
 	laser_beam_activating = true
 	laser_beam_activated = true
-	player_recoil.emit(laser_beam_activating, laser_beam_activated)
+	activation.emit(laser_beam_activating, laser_beam_activated)
 	await get_tree().create_timer(1).timeout
 	$Line2D.visible = false;
 	collision.disabled = true;
 	$Cooldown.start()
 	laser_beam_activating = false
 	laser_beam_activated = false
-	player_recoil.emit(laser_beam_activating, laser_beam_activated)
+	activation.emit(laser_beam_activating, laser_beam_activated)
 	is_laser_beam_cooldown = true
 
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ea6pv"]
 [ext_resource type="Texture2D" uid="uid://bwnxnuerjknwh" path="res://Assets/Graphics/player.png" id="2_36ooa"]
 [ext_resource type="Shader" path="res://Shaders/player.gdshader" id="2_swv0c"]
-[ext_resource type="Script" path="res://Scripts/gas_manager.gd" id="4_mxapn"]
+[ext_resource type="PackedScene" uid="uid://dhuakgg8wwbwo" path="res://Scenes/gas_manager.tscn" id="4_ai6t5"]
 [ext_resource type="PackedScene" uid="uid://bt4m8t0174xfi" path="res://Scenes/laser_beam.tscn" id="4_uotbk"]
 [ext_resource type="PackedScene" uid="uid://iws61yfdpyw5" path="res://Scenes/laser_bullets.tscn" id="5_nrekw"]
 
@@ -58,6 +58,9 @@ scale = Vector2(0.5, 0.5)
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_ea6pv")
+speed = null
+acceleration = null
+friction_value = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_d7xiq")
@@ -97,13 +100,12 @@ scale_amount_min = 10.0
 scale_amount_max = 12.0
 color_ramp = SubResource("Gradient_xjkwf")
 
-[node name="GasManager" type="Node2D" parent="." groups=["gas_manager"]]
-script = ExtResource("4_mxapn")
+[node name="GasManager" parent="." instance=ExtResource("4_ai6t5")]
 
 [node name="LaserBullets" parent="." instance=ExtResource("5_nrekw")]
 top_level = true
 
 [node name="LaserBeam" parent="." instance=ExtResource("4_uotbk")]
 
-[connection signal="player_recoil" from="LaserBeam" to="." method="_on_laser_beam_player_recoil"]
-[connection signal="player_recoil" from="LaserBeam" to="LaserBullets" method="_on_laser_beam_player_recoil"]
+[connection signal="activation" from="LaserBeam" to="." method="_on_laser_beam_activation"]
+[connection signal="activation" from="LaserBeam" to="LaserBullets" method="_on_laser_beam_activation"]

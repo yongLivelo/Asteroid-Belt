@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: int = 800
 @export var acceleration: int = 50
-@export var friction_value: int = 25
+@export var friction_value: int = 10
 const MAX_HEALTH: int = 5
 var health = MAX_HEALTH
 var is_hit_cooldown: bool = false
@@ -15,15 +15,17 @@ func _ready():
 
 	
 func _physics_process(_delta):
+	var direction = Vector2.ZERO
+
 	if not freeze:
-		var direction = Input.get_vector("left", "right", "up", "down")
-		if direction != Vector2.ZERO:
-			accelerate(direction)
-		else:
-			friction()
-		
+		direction = Input.get_vector("left", "right", "up", "down")
 		mouse_position = get_global_mouse_position()
 		look_at(mouse_position)
+
+	if direction != Vector2.ZERO:
+		accelerate(direction)
+	else:
+		friction()
 		
 	move_and_slide()
 		
@@ -38,7 +40,7 @@ func friction():
 
 func on_meteor_collision(body: RigidBody2D):
 
-	velocity = -((body.linear_velocity - velocity) * 1)
+	velocity = -((body.linear_velocity - velocity) * 1.5)
 
 	if not is_hit_cooldown:
 		is_hit_cooldown = true
@@ -52,7 +54,8 @@ func on_meteor_collision(body: RigidBody2D):
 	is_hit_cooldown = false
 
 
-func _on_laser_beam_player_recoil(activating: Variant, activated: Variant):
+func _on_laser_beam_activation(activating: bool, activated: bool):
 	freeze = activating
+	
 	if activated:
-		velocity = -((transform.x).normalized() * 500)
+		velocity = -(transform.x * 2000)

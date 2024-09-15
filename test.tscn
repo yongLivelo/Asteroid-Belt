@@ -7,6 +7,9 @@
 
 [node name="Player" parent="." instance=ExtResource("1_5iw4o")]
 position = Vector2(642, 456)
+speed = null
+acceleration = null
+friction_value = null
 
 [node name="Meteors" parent="." instance=ExtResource("2_lj1ke")]
 position = Vector2(583, 305)

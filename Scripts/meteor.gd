@@ -19,7 +19,7 @@ func _ready():
 		var randomX: int = rng.randi_range(0, Global.width)
 		var randomY: int = rng.randi_range(-50, -100)
 		position = Vector2(randomX, randomY)
-
+	
 	linear_velocity = Vector2(rng.randi_range(-200, 200), rng.randi_range(500, 1000))
 
 
@@ -43,7 +43,6 @@ func _on_area_2d_area_entered(area: Area2D):
 func _on_area_2d_body_entered(body: Node2D):
 	
 	if (body.is_in_group("player")):
-		print("asd")
 		player_collision.emit(self)
 
 func _on_explode_finished():

@@ -20,5 +20,5 @@ func shoot_laser_bullet():
 	add_child(laser)
 
 
-func _on_laser_beam_player_recoil(activating: Variant):
+func _on_laser_beam_activation(activating: bool, _activated):
 	disabled = activating
