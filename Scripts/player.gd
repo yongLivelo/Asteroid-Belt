@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: int = 800
-@export var acceleration: int = 50
+@export var acceleration: int = 200
 @export var friction_value: int = 10
 const MAX_HEALTH: int = 5
 var health = MAX_HEALTH

@@ -8,7 +8,7 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("bullet") and !is_laser_bullet_cooldown:
 				shoot_laser_bullet()
 				is_laser_bullet_cooldown = true
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.2).timeout
 				is_laser_bullet_cooldown = false
 			
 
