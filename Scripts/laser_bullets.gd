@@ -22,3 +22,7 @@ func shoot_laser_bullet():
 
 func _on_laser_beam_activation(activating: bool, _activated):
 	disabled = activating
+
+
+func _on_gas_manager_no_gas():
+	disabled = true

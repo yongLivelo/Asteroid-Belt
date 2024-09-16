@@ -58,9 +58,6 @@ scale = Vector2(0.5, 0.5)
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_ea6pv")
-speed = null
-acceleration = null
-friction_value = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_d7xiq")
@@ -101,11 +98,15 @@ scale_amount_max = 12.0
 color_ramp = SubResource("Gradient_xjkwf")
 
 [node name="GasManager" parent="." instance=ExtResource("4_ai6t5")]
+top_level = true
 
 [node name="LaserBullets" parent="." instance=ExtResource("5_nrekw")]
 top_level = true
 
 [node name="LaserBeam" parent="." instance=ExtResource("4_uotbk")]
 
+[connection signal="no_gas" from="GasManager" to="." method="_on_gas_manager_no_gas"]
+[connection signal="no_gas" from="GasManager" to="LaserBullets" method="_on_gas_manager_no_gas"]
+[connection signal="no_gas" from="GasManager" to="LaserBeam" method="_on_gas_manager_no_gas"]
 [connection signal="activation" from="LaserBeam" to="." method="_on_laser_beam_activation"]
 [connection signal="activation" from="LaserBeam" to="LaserBullets" method="_on_laser_beam_activation"]

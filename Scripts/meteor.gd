@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+signal destroyed_meteor
 signal destroyed_large_meteor
 signal player_collision
 signal laser_collision
@@ -32,7 +33,9 @@ func _on_area_2d_area_entered(area: Area2D):
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
 		if size == "large":
 			destroyed_large_meteor.emit(position)
-	
+		else:
+			destroyed_meteor.emit(position)
+
 	if area.is_in_group("laser_bullet"):
 		area.queue_free()
 

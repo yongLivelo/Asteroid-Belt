@@ -40,6 +40,7 @@ func friction():
 
 func on_meteor_collision(body: RigidBody2D):
 
+	AudioManager.player_damage.play()
 	velocity = -((body.linear_velocity - velocity) * 1.5)
 
 	if not is_hit_cooldown:
@@ -59,3 +60,7 @@ func _on_laser_beam_activation(activating: bool, activated: bool):
 	
 	if activated:
 		velocity = -(transform.x * 2000)
+
+
+func _on_gas_manager_no_gas():
+	freeze = true

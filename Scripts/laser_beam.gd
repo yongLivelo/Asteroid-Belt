@@ -7,6 +7,7 @@ var base_width = 30
 var is_laser_beam_cooldown: bool = false
 var laser_beam_activating: bool = false
 var laser_beam_activated: bool = false
+var disabled: bool = false
 var mouse_position: Vector2
 
 func _ready():
@@ -27,7 +28,7 @@ func _physics_process(_delta):
 		$Line2D.points[1] = $RayCast2D.target_position
 		collision.shape.b = $Line2D.points[1]
 
-	if Input.is_action_just_pressed("beam") and not is_laser_beam_cooldown:
+	if Input.is_action_just_pressed("beam") and not is_laser_beam_cooldown and not laser_beam_activated and not disabled:
 		AudioManager.laser_beam.play()
 		mouse_position = get_local_mouse_position()
 		$HoldTime.start()
@@ -59,3 +60,7 @@ func _on_hold_time_timeout():
 
 func _on_cooldown_timeout():
 	is_laser_beam_cooldown = false
+
+
+func _on_gas_manager_no_gas():
+	disabled = true
