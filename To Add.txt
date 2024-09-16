@@ -1,0 +1,22 @@
+*Skills
+1. Portal Teleporter
+-Controlling distance by using scroll
+-Default key is f
+2. Shield
+-Gets destroyed with one hit
+-Default key is x
+
+*UI
+-UI for cooldown of skills
+-Better design lmao
+
+*Sprites
+-Try to make better self-made sprites
+
+*Enemies
+-Add comet level at level 100 
+(There are comet projectiles flying over the screen, projectile not destroyable or shieldable)
+-Add asteroid level at level 50
+(There are massive slow moving asteroid that has high health while dodging meteors at the side)
+-Add flying asteroid at level 50 
+(Massive fast moving asteroid that is supposedly cannot be destroyed with laser in that time span, you can only utilize your portal to dodge it)
